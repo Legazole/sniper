@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract Hub {
     IERC20 public token;
     IERC20 public constant WETH =
-        IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
+        IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
 
     mapping(address => uint) public userValueStored;
     address[] public users;
@@ -39,10 +39,8 @@ contract Hub {
         return token.balanceOf(_address);
     }
 
-    function checkAddressWETHBalance(
-        address _address
-    ) external view returns (uint) {
-        return WETH.balanceOf(_address);
+    function checkAddressWETHBalance() external view returns (uint) {
+        return WETH.balanceOf(address(this));
     }
 
     function getIERC20Addressess()
