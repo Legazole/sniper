@@ -6,7 +6,7 @@ describe("Hub functionality", function () {
     let deployer, hub, wethContract
 
     const wethTokenAddress = 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
-    const wethABI = ["function balanceOf(address) view returns (uint)"]
+    const wethABI = ["function balanceOf(address) view returns (uint);"]
 
     beforeEach(async function () {
         //get the signer via getNamedAccountsFunction()
