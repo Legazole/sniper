@@ -95,6 +95,8 @@ async function main() {
         TradeType.EXACT_INPUT
     )
 
+    console.log(usdc.name)
+
     console.log("***********************")
     console.log("Price feed")
     console.log("***********************")
@@ -109,15 +111,17 @@ async function main() {
     console.log("how much does 1 USDC buy us?")
     //console.log(`${trade1.executionPrice.invert().toSignificant(6)}`)
     const aToB = trade1.executionPrice.invert().toSignificant(6)
+    await BigInt(aToB)
     console.log(aToB)
     //now we know how much eth we can buy with 1 usdc
     //we can use this amount as trade input into another coin (C)
     //example third coin = link
+
     const pair2 = await Fetcher.fetchPairData(link, usdc, provider)
     const routeBToC = new Route([pair2], usdc)
     const tradeWithAToBAmount = new Trade(
         routeBToC,
-        aToB,
+        new TokenAmount(usdc, aToB),
         TradeType.EXACT_INPUT
     )
     const trade2 = new Trade(
